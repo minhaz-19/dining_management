@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@400;700&display=swap');
+@import url('variables.css');
+
+*{
+    font-family: 'Alkatra', cursive;
+}
+
+.container-fluid{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* css for heading part */
+.header .nav-bar .navbar .container-fluid .navbar-brand img{
+    height: 50px;
+}
+
+.header .nav-bar .navbar .container-fluid .navbar-brand{
+    padding: 0 2rem 0 1rem;
+}
+
+.header .nav-bar .navbar{
+    padding: 1rem;
+}
+
+.navbar-nav .nav-item .active{
+    color: var(--ruet-theme-color);
+}
+
+.navbar-nav .nav-item .nav-link:hover{
+    color: var(--ruet-theme-color);
+}
+
+
+
+
+
+/* css for main part */
+
+.main{
+    background-image:url('../images/order-meal-image.jpg');
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+}
+
+.select-meal {
+    width: 70%;
+}
+
+.lunch {
+    background-color: wheat;
+    opacity: 60%;
+    color: black;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
+.dinner{
+    background-color: wheat;
+    opacity: 60%;
+    color: black;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
+.hall-name{
+    background-color: wheat;
+    opacity: 60%;
+    color: black;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
+.show-date{
+    background-color: wheat;
+    opacity: 60%;
+    color: black;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+    
+}
+
+
+
+.main .dropdown{
+
+    padding: 0 0.5rem;
+
+}
+
+
+
+
+.main .select-meal .card{
+    border: none;
+    background: transparent;
+}
+
+.main .select-meal .card .card-body{
+    
+    padding: 0.5rem ;
+    height: 2.975rem;
+    margin: 0 0.75rem;
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.fun{
+    font-size: xx-large;
+}
+
+/* css for card in main part */
