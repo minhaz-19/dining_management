@@ -15,28 +15,13 @@ const firebaseConfig = {
 }
 
 // init firebase
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
 
 // init services
-const db = getFirestore()
+const db = getFirestore();
 
-// collection ref
-const colRef = collection(db, 'dimu')
 
-// get collection data
-getDocs(colRef)
-  .then(snapshot => {
-    // console.log(snapshot.docs)
-    let books = []
-    snapshot.docs.forEach(doc => {
-      books.push({ ...doc.data(), id: doc.id })
-    })
-    console.log(books)
-  })
-  .catch(err => {
-    console.log(err.message)
-  })
 
 
 
@@ -50,7 +35,8 @@ getDocs(colRef)
 
   //=============================  Log In Page Javascript  ===============================
 
-const sign_in_btn = document.querySelector("#sign-in-btn");
+function loginPage(){
+  const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 
@@ -65,6 +51,125 @@ sign_in_btn.addEventListener("click", () => {
   window.location.href = 'order.html';
 });
 
-console.log('hello')
 
 
+}
+
+
+
+
+
+
+
+
+
+//============================  Order Page Javascript ===========================
+
+
+
+
+var show_item_price_in_menu;
+
+function showMenuItems(item_name, item_price){
+
+  // Create a new element
+var newElement = document.createElement('div');
+
+// Set class name for the new element
+newElement.className = 'card my-3 shadow border-0 pt-2';
+
+// Set styles for the new element
+newElement.style.width = '18rem';
+
+
+newElement.innerHTML = `
+<img
+  src="../images/food-image.jpg"
+  class="card-img-top"
+  alt="..."
+/>
+<div class="card-body">
+  <h5 class="card-title">
+    <div class="row">
+      <div class="col">${item_name}</div>
+      <div class="col text-end">${show_item_price_in_menu} </div>
+    </div>
+  </h5>
+  <a href="#" class="btn btn-secondary w-100">Add to cart</a>
+</div>`;
+
+// Get the parent element by its ID name
+var parentElement = document.getElementById('menu-items-card-holder');
+
+// Append the new element to the parent element
+parentElement.appendChild(newElement);
+ 
+}
+
+
+
+
+function menu(){
+
+  // collection ref
+let colRef = collection(db, 'Bangabandhu Sheikh Mujibur Rahman Hall/Menu/Lunch');
+var item_name, item_price, item_availability;
+// get collection data
+getDocs(colRef)
+  .then(snapshot => {
+    // console.log(snapshot.docs)
+    let books = []
+    
+    snapshot.docs.forEach(doc => {
+      books.push({ ...doc.data(), id: doc.id })
+        item_name = doc.id;
+        item_price = doc.data().Price;
+        item_availability = doc.data().Available;
+        if(item_price == 0){
+          show_item_price_in_menu = 'Complementary'
+        }else{
+          show_item_price_in_menu = item_price +'/='
+        }
+        if(item_availability){
+          showMenuItems(item_name, show_item_price_in_menu)
+        }
+    })
+    
+    console.log(books)
+  })
+  .catch(err => {
+    item_name = 'Error';
+        item_price = 'Error';
+        item_availability = false;
+  });
+
+}
+
+
+
+
+function orderPage(){
+  menu();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//===============================  Select Javascript function  =================
+
+if(document.title == 'Log In'){
+  loginPage();
+}
+else if(document.title == 'Order Meal'){
+  orderPage();
+}
