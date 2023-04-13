@@ -68,7 +68,42 @@ sign_in_btn.addEventListener("click", () => {
 
 
 
-var show_item_price_in_menu;
+var show_item_price_in_menu, meal_name = 'Lunch', hall_name = 'Bangabandhu Sheikh Mujibur Rahman Hall';
+
+
+
+function showDate(){
+
+  var nextDay = new Date();
+  nextDay.setDate(nextDay.getDate() + 1); // Add 1 day to the current date
+    // Define an array of month names
+    var monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+  
+    
+    
+  // Handle cases where the next day falls in the next month or year
+  if (nextDay.getDate() === 1) {
+    nextDay.setMonth(nextDay.getMonth() + 1); // Add 1 month
+    if (nextDay.getMonth() === 0) {
+      nextDay.setFullYear(nextDay.getFullYear() + 1); // Add 1 year
+    }
+  }
+
+// Extract the date parts
+var month = monthNames[nextDay.getMonth()]; // Get month name from array
+var day = nextDay.getDate();
+var year = nextDay.getFullYear();
+
+
+    // Format the date as desired (e.g., "Month DD, YYYY")
+    var formattedDate = month + " " + day + ", " + year;
+  
+    // Update the innerHTML of the display element
+    document.getElementById('show-date').innerHTML  = formattedDate;
+}
 
 function showMenuItems(item_name, item_price){
 
@@ -106,7 +141,7 @@ parentElement.appendChild(newElement);
  
 }
 
-
+ 
 
 
 function menu(){
@@ -118,10 +153,10 @@ var item_name, item_price, item_availability;
 getDocs(colRef)
   .then(snapshot => {
     // console.log(snapshot.docs)
-    let books = []
+    let items = []
     
     snapshot.docs.forEach(doc => {
-      books.push({ ...doc.data(), id: doc.id })
+      items.push({ ...doc.data(), id: doc.id })
         item_name = doc.id;
         item_price = doc.data().Price;
         item_availability = doc.data().Available;
@@ -135,7 +170,6 @@ getDocs(colRef)
         }
     })
     
-    console.log(books)
   })
   .catch(err => {
     item_name = 'Error';
@@ -147,9 +181,24 @@ getDocs(colRef)
 
 
 
+function addItemsToCart(){
+
+  
+}
+
+
+
+
 
 function orderPage(){
+  showDate();
   menu();
+
+document.getElementById('lunch-button').addEventListener("click", function() {
+  
+  
+  console.log("Button clicked!");
+});
 }
 
 

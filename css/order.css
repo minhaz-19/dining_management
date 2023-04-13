@@ -45,11 +45,19 @@
     align-items: center;
     justify-content: center;
     background-position: center;
+    overflow: hidden;
 }
 
-.select-meal {
+/* .select-meal {
+    width: 70%;
+} */
+@media screen and (min-width: 768px){
+    .select-meal {
     width: 70%;
 }
+}
+
+
 
 .lunch {
     background-color: wheat;
