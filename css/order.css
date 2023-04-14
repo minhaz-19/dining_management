@@ -45,12 +45,10 @@
     align-items: center;
     justify-content: center;
     background-position: center;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-/* .select-meal {
-    width: 70%;
-} */
+
 @media screen and (min-width: 768px){
     .select-meal {
     width: 70%;
@@ -89,7 +87,19 @@
     /* font-size: xx-large; */
 }
 
-.show-date{
+#show-date {
+    background-color: wheat;
+    opacity: 60%;
+    color: black;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+    
+}
+
+
+#search-menu-button {
     background-color: wheat;
     opacity: 60%;
     color: black;

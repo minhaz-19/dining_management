@@ -76,36 +76,42 @@
       <main>
         <div class="main">
           <div class="select-meal">
-            <div class="row"><div class="row m-0 py-3 first-row">
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-lg w-100 hall-name"
-                  id="show-date"
-                >
-                  Date
-                </button>
+            <div class="row">
+              <div class="row m-0 py-3 first-row">
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-lg w-100"
+                    id="show-date"
+                  >
+                    Date
+                  </button>
+                </div>
+              </div>
+              <div class="row m-0 py-3 second-row">
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-lg w-100 lunch"
+                    id="lunch-button"
+                  >
+                    Lunch
+                  </button>
+                </div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-lg w-100 dinner"
+                    id="dinner-button"
+                  >
+                    Dinner
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="row m-0 py-3 second-row">
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-lg w-100 lunch"
-                >
-                  Lunch
-                </button>
-              </div>
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-lg w-100 dinner"
-                >
-                  Dinner
-                </button>
-              </div>
-            </div></div>
-            <div class="row"><div class="row py-3 m-0 third-row">
+            <!-- HTML code for the dropdown menu -->
+
+            <div class="row py-3 m-0 third-row">
               <div class="col">
                 <div class="dropdown d-flex w-100 m-0 p-0">
                   <button
@@ -115,9 +121,9 @@
                     aria-expanded="false"
                     id="hall_name"
                   >
-                  Bangabandhu Sheikh Mujibur Rahman Hall
+                    Select Hall
                   </button>
-                  <ul class="dropdown-menu w-100">
+                  <ul class="dropdown-menu" id="myDropdownMenu">
                     <li>
                       <a class="dropdown-item" href="#"
                         >Bangabandhu Sheikh Mujibur Rahman Hall</a
@@ -148,27 +154,32 @@
                         >Shahid Shahidul Islam Hall</a
                       >
                     </li>
-                    <li><a class="dropdown-item" href="#">Tin Shed Hall</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Tin Shed Hall</a>
+                    </li>
                   </ul>
                 </div>
               </div>
-              
-            </div></div>
-
-
-
-            
-
-
-
-
-
-
-
-
-            
+            </div>
           </div>
         </div>
+
+                                                                         <!-- show selected hall name -->
+        <div id="showSelectedHallName"><div class="row py-3 m-0 third-row">
+          <div class="col">
+            <div class="row m-0 py-3 first-row">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg w-100 disabled"
+                  id="show-date"
+                >
+                Bangabandhu Sheikh Mujibur Rahman Hall
+                </button>
+              </div>
+            </div>
+          </div>
+        </div></div>
 
         <!-- Menu Items part -->
 
@@ -176,10 +187,10 @@
           <div class="row text-center m-0">
             <h3 class="py-3">Menu Items</h3>
           </div>
-          <div class="row flex-wrap m-0 justify-content-evenly " id="menu-items-card-holder">
-          
-          </div>
-          
+          <div
+            class="row flex-wrap m-0 justify-content-evenly"
+            id="menu-items-card-holder"
+          ></div>
         </div>
       </main>
 

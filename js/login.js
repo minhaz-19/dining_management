@@ -69,7 +69,9 @@ sign_in_btn.addEventListener("click", () => {
 
 
 var show_item_price_in_menu, meal_name = 'Lunch', hall_name = 'Bangabandhu Sheikh Mujibur Rahman Hall';
-
+var reference = hall_name+'/Menu/'+meal_name;
+ // collection ref
+ var colRef = collection(db, reference);
 
 
 function showDate(){
@@ -146,8 +148,7 @@ parentElement.appendChild(newElement);
 
 function menu(){
 
-  // collection ref
-let colRef = collection(db, 'Bangabandhu Sheikh Mujibur Rahman Hall/Menu/Lunch');
+ colRef = collection(db, reference);
 var item_name, item_price, item_availability;
 // get collection data
 getDocs(colRef)
@@ -195,10 +196,52 @@ function orderPage(){
   menu();
 
 document.getElementById('lunch-button').addEventListener("click", function() {
-  
-  
-  console.log("Button clicked!");
+  document.getElementById('menu-items-card-holder').innerHTML='';
+  document.getElementById('lunch-button').style.backgroundColor = '#161719';
+  document.getElementById('dinner-button').style.backgroundColor = '#F8F9FA';
+  meal_name = 'Lunch';
+  reference = hall_name+'/Menu/'+meal_name;
+  menu()
+
 });
+
+document.getElementById('dinner-button').addEventListener("click", function() {
+  document.getElementById('menu-items-card-holder').innerHTML='';
+  // document.getElementById('dinner-button').style.backgroundColor = '#161719';
+  // document.getElementById('lunch-button').style.backgroundColor = '#F8F9FA';
+  meal_name = 'Dinner';
+  reference = hall_name+'/Menu/'+meal_name;
+  menu()
+
+});
+
+document.getElementById("myDropdownMenu").addEventListener("click", function(event) {
+  var hall_name = event.target.textContent;
+  document.getElementById("showSelectedHallName").innerHTML = `<div class="row py-3 m-0 third-row">
+  <div class="col">
+    <div class="row m-0 py-3 first-row">
+      <div class="col">
+        <button
+          type="button"
+          class="btn btn-secondary btn-lg w-100 disabled"
+          id="show-date"
+        >
+          ${hall_name}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>`;
+document.getElementById('menu-items-card-holder').innerHTML='';
+reference = hall_name+'/Menu/'+meal_name;
+menu();
+});
+
+
+
+
+
+
 }
 
 
