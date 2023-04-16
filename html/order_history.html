@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.js"></script>
+  <style>
+    #qrcode svg {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1>QR Code Generator</h1>
+  <form onsubmit="generateQRCode(); return false;">
+    <label for="inputText">Text to Encode:</label>
+    <input type="text" id="inputText" name="inputText">
+    <button type="submit">Generate QR Code</button>
+  </form>
+  <div id="qrcode"></div>
+  <button onclick="saveQRCode()">Save QR Code</button>
+  <script>
+    // Function to generate QR code
+    function generateQRCode(inputText) {
+      var qr = qrcode(0, 'L');
+      qr.addData(inputText);
+      qr.make();
+      var svgTag = qr.createSvgTag({cellSize: 10});
+      document.getElementById("qrcode").innerHTML = svgTag;
+    }
+
+    // Function to save QR code as an image
+    function saveQRCode() {
+      var svg = document.getElementById("qrcode").getElementsByTagName("svg")[0];
+      var svgData = new XMLSerializer().serializeToString(svg);
+      var canvas = document.createElement("canvas");
+      canvas.width = svg.width.baseVal.value;
+      canvas.height = svg.height.baseVal.value;
+      var ctx = canvas.getContext("2d");
+      var img = new Image();
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0);
+        var link = document.createElement('a');
+        link.href = canvas.toDataURL();
+        link.download = 'qrcode.png';
+        link.click();
+      };
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
+    }
+  </script>
+</body>
+</html>

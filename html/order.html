@@ -164,22 +164,24 @@
           </div>
         </div>
 
-                                                                         <!-- show selected hall name -->
-        <div id="showSelectedHallName"><div class="row py-3 m-0 third-row">
-          <div class="col">
-            <div class="row m-0 py-3 first-row">
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-lg w-100 disabled"
-                  id="show-date"
-                >
-                Bangabandhu Sheikh Mujibur Rahman Hall
-                </button>
+        <!-- show selected hall name -->
+        <div id="showSelectedHallName">
+          <div class="row py-3 m-0 third-row">
+            <div class="col">
+              <div class="row m-0 py-3 first-row">
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-lg w-100 disabled"
+                    id="show-date"
+                  >
+                    Bangabandhu Sheikh Mujibur Rahman Hall
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div></div>
+        </div>
 
         <!-- Menu Items part -->
 
@@ -191,6 +193,72 @@
             class="row flex-wrap m-0 justify-content-evenly"
             id="menu-items-card-holder"
           ></div>
+        </div>
+
+
+
+        <!-- =================  show  popup  =====================-->
+        <div id="popup-container" class="px-2">
+          <div id="popup-content">
+            <div class="row"><h2>Add items to menu</h2></div>
+
+            <div class="row d-flex justify-content-between">
+              <div class="col-2 py-2">Name</div>
+              <div class="col mx-0 px-0 ">
+                <input type="text" id="itemNameToBeAdded" />
+              </div>
+            </div>
+            <div class="row py-2 d-flex justify-content-between">
+              <div class="col-2 mx-0 px-0">Price</div>
+              <div class="col  mx-0 px-0">
+                <input type="number" id="itemPriceToBeAdded" />
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-secondary w-100 lunch"
+                  id="add-item-lunch-button"
+                >
+                  Lunch
+                </button>
+              </div>
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-secondary w-100 dinner"
+                  id="add-item-dinner-button"
+                >
+                  Dinner
+                </button>
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-danger w-100 submit"
+                  id="close-add-item-popup"
+                >
+                  Close
+                </button>
+              </div>
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-danger w-100 submit"
+                  id="submit-add-item-popup"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="add-element-container">
+          <button id="add-element-button">+</button>
         </div>
       </main>
 

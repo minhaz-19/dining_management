@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import {
-  getFirestore, collection, getDocs
+  getFirestore, collection, getDocs, addDoc , doc, setDoc
 } from 'firebase/firestore'
 
 
@@ -20,6 +20,7 @@ initializeApp(firebaseConfig);
 
 // init services
 const db = getFirestore();
+var docRef;
 
 
 
@@ -188,59 +189,135 @@ function addItemsToCart(){
 }
 
 
+function addItemsToMenuByAdmin(){
+  document.getElementById('add-element-button').addEventListener('click', function() {
+    // Add your logic here for what should happen when the button is clicked
+  });
+  
+}
+
+
+
+function lunchButtonClicked(){
+  document.getElementById('lunch-button').addEventListener("click", function() {
+    document.getElementById('menu-items-card-holder').innerHTML='';
+    document.getElementById('lunch-button').style.backgroundColor = '#161719';
+    document.getElementById('dinner-button').style.backgroundColor = '#F8F9FA';
+    meal_name = 'Lunch';
+    reference = hall_name+'/Menu/'+meal_name;
+    menu()
+  
+  });
+}
+
+
+function dinnerButtonClicked(){
+  document.getElementById('dinner-button').addEventListener("click", function() {
+    document.getElementById('menu-items-card-holder').innerHTML='';
+    // document.getElementById('dinner-button').style.backgroundColor = '#161719';
+    // document.getElementById('lunch-button').style.backgroundColor = '#F8F9FA';
+    meal_name = 'Dinner';
+    reference = hall_name+'/Menu/'+meal_name;
+    menu()
+  
+  });
+}
+
+
+
+function showSelectedHallName(){
+  document.getElementById("myDropdownMenu").addEventListener("click", function(event) {
+    var hall_name = event.target.textContent;
+    document.getElementById("showSelectedHallName").innerHTML = `<div class="row py-3 m-0 third-row">
+    <div class="col">
+      <div class="row m-0 py-3 first-row">
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-secondary btn-lg w-100 disabled"
+            id="show-date"
+          >
+            ${hall_name}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  document.getElementById('menu-items-card-holder').innerHTML='';
+  reference = hall_name+'/Menu/'+meal_name;
+  menu();
+  });
+}
+
+
+
+function addItemButtonClicked(){
+  document.getElementById('add-element-container').addEventListener("click", function(event){
+    document.getElementById('popup-container').style.display = "block";
+  });
+}
+
+function closeAddItemPopupClicked(){
+  document.getElementById('close-add-item-popup').addEventListener("click", function(event){
+    document.getElementById('popup-container').style.display = "none";
+  });
+}
+
+
+ function submitAddItemButtonClicked(){
+document.getElementById('submit-add-item-popup').addEventListener("click", function(event){
+var newItemName = document.getElementById("itemNameToBeAdded").value;
+var newItemValue = document.getElementById("itemPriceToBeAdded").value;
+var newItem = {
+  Available: true,
+  Price: newItemValue,
+};
+reference = hall_name+'/Menu/'+meal_name;
+
+var collectionRef = collection(db, reference);
+var documentId = newItemName; // specify the document ID
+
+// Create a new document with the data you want to add
+var newItemData = {
+  Available: true,
+  Price: newItemValue,
+
+};
+
+// Set the new document data for the selected document ID
+setDoc(doc(collectionRef, documentId), newItemData)
+.then(() => {
+  document.getElementById('popup-container').style.display = "none";
+
+})
+.catch((error) => {
+  console.error('Error adding document: ', error);
+});
+
+
+});
+}
+
+
 
 
 
 function orderPage(){
   showDate();
+
   menu();
 
-document.getElementById('lunch-button').addEventListener("click", function() {
-  document.getElementById('menu-items-card-holder').innerHTML='';
-  document.getElementById('lunch-button').style.backgroundColor = '#161719';
-  document.getElementById('dinner-button').style.backgroundColor = '#F8F9FA';
-  meal_name = 'Lunch';
-  reference = hall_name+'/Menu/'+meal_name;
-  menu()
+  lunchButtonClicked();
 
-});
+  dinnerButtonClicked();
 
-document.getElementById('dinner-button').addEventListener("click", function() {
-  document.getElementById('menu-items-card-holder').innerHTML='';
-  // document.getElementById('dinner-button').style.backgroundColor = '#161719';
-  // document.getElementById('lunch-button').style.backgroundColor = '#F8F9FA';
-  meal_name = 'Dinner';
-  reference = hall_name+'/Menu/'+meal_name;
-  menu()
+  showSelectedHallName();
 
-});
+addItemButtonClicked();
 
-document.getElementById("myDropdownMenu").addEventListener("click", function(event) {
-  var hall_name = event.target.textContent;
-  document.getElementById("showSelectedHallName").innerHTML = `<div class="row py-3 m-0 third-row">
-  <div class="col">
-    <div class="row m-0 py-3 first-row">
-      <div class="col">
-        <button
-          type="button"
-          class="btn btn-secondary btn-lg w-100 disabled"
-          id="show-date"
-        >
-          ${hall_name}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>`;
-document.getElementById('menu-items-card-holder').innerHTML='';
-reference = hall_name+'/Menu/'+meal_name;
-menu();
-});
+closeAddItemPopupClicked();
 
-
-
-
-
+submitAddItemButtonClicked();
 
 }
 
