@@ -57,9 +57,9 @@
 
 
 
-.lunch {
-    background-color: wheat;
-    opacity: 60%;
+#lunch-button {
+    background-color: white;
+
     color: black;
     border: none;
     font-weight: bolder;
@@ -67,15 +67,53 @@
     /* font-size: xx-large; */
 }
 
-.dinner{
-    background-color: wheat;
-    opacity: 60%;
+#lunch-button:hover {
+    background-color: rgba(63, 99, 183, 0.689);
+    color: white;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
+#lunch-button:focus {
+    background-color: rgba(63, 99, 183, 0.689);
+    color: white;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
+#dinner-button{
+    background-color: white;
     color: black;
     border: none;
     font-weight: bolder;
     padding: 1rem 0;
     /* font-size: xx-large; */
 }
+
+#dinner-button:hover {
+    background-color: rgba(63, 99, 183, 0.689);
+    color: white;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
+#dinner-button:focus {
+    background-color: rgba(63, 99, 183, 0.689);
+    color: white;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
+
+
 
 .submit{
     background-color: rgb(185, 72, 43);
@@ -88,7 +126,7 @@
 }
 
 .hall-name{
-    background-color: wheat;
+    background-color: white;
     color: black;
     border: none;
     font-weight: bolder;
@@ -96,9 +134,28 @@
     /* font-size: xx-large; */
 }
 
+.hall-name:hover {
+    background-color: rgba(63, 99, 183, 0.689);
+    color: white;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+}
+
 #show-date {
+    background-color: white;
+
+    color: black;
+    border: none;
+    font-weight: bolder;
+    padding: 1rem 0;
+    /* font-size: xx-large; */
+    
+}
+
+#show-selected-hall-name{
     background-color: wheat;
-    opacity: 60%;
     color: black;
     border: none;
     font-weight: bolder;

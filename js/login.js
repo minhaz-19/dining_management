@@ -201,11 +201,21 @@ function addItemsToMenuByAdmin(){
 function lunchButtonClicked(){
   document.getElementById('lunch-button').addEventListener("click", function() {
     document.getElementById('menu-items-card-holder').innerHTML='';
-    document.getElementById('lunch-button').style.backgroundColor = '#161719';
-    document.getElementById('dinner-button').style.backgroundColor = '#F8F9FA';
+    // document.getElementById('lunch-button').style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
+    // document.getElementById('dinner-button').style.backgroundColor = 'white';
+    // document.getElementById('dinner-button').style.color = 'black';
+    // var lunch_element = document.getElementById('dinner-button');
+    // lunch_element.addEventListener('mouseenter', function() {
+    //   lunch_element.style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
+    //   lunch_element.style.color = 'white';
+    // });
+    // lunch_element.addEventListener('mouseleave', function() {
+    //   lunch_element.style.backgroundColor = 'white';
+    //   lunch_element.style.color = 'black';
+    // });
     meal_name = 'Lunch';
     reference = hall_name+'/Menu/'+meal_name;
-    menu()
+    menu();
   
   });
 }
@@ -214,11 +224,21 @@ function lunchButtonClicked(){
 function dinnerButtonClicked(){
   document.getElementById('dinner-button').addEventListener("click", function() {
     document.getElementById('menu-items-card-holder').innerHTML='';
-    // document.getElementById('dinner-button').style.backgroundColor = '#161719';
-    // document.getElementById('lunch-button').style.backgroundColor = '#F8F9FA';
+    // document.getElementById('dinner-button').style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
+    // document.getElementById('lunch-button').style.backgroundColor = 'white';
+    // document.getElementById('lunch-button').style.color = 'black';
+    // var dinner_element = document.getElementById('lunch-button');
+    // dinner_element.addEventListener('mouseenter', function() {
+    //   dinner_element.style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
+    //   dinner_element.style.color = 'white';
+    // });
+    // dinner_element.addEventListener('mouseleave', function() {
+    //   dinner_element.style.backgroundColor = 'white';
+    //   dinner_element.style.color = 'black';
+    // });
     meal_name = 'Dinner';
     reference = hall_name+'/Menu/'+meal_name;
-    menu()
+    menu();
   
   });
 }
@@ -227,7 +247,7 @@ function dinnerButtonClicked(){
 
 function showSelectedHallName(){
   document.getElementById("myDropdownMenu").addEventListener("click", function(event) {
-    var hall_name = event.target.textContent;
+     hall_name = event.target.textContent;
     document.getElementById("showSelectedHallName").innerHTML = `<div class="row py-3 m-0 third-row">
     <div class="col">
       <div class="row m-0 py-3 first-row">
@@ -235,7 +255,7 @@ function showSelectedHallName(){
           <button
             type="button"
             class="btn btn-secondary btn-lg w-100 disabled"
-            id="show-date"
+            id="show-selected-hall-name"
           >
             ${hall_name}
           </button>
@@ -318,6 +338,7 @@ addItemButtonClicked();
 closeAddItemPopupClicked();
 
 submitAddItemButtonClicked();
+
 
 }
 
