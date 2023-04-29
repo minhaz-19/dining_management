@@ -73,8 +73,9 @@ sign_in_btn.addEventListener("click", () => {
 
 
 
-var show_item_price_in_menu, meal_name = 'Lunch', hall_name = 'Bangabandhu Sheikh Mujibur Rahman Hall';
+var show_item_price_in_menu, meal_name = 'Lunch', hall_name = 'Bangabandhu Sheikh Mujibur Rahman Hall',text_in_add_to_cart_button;
 var reference = hall_name+'/Menu/'+meal_name;
+var item_name, item_price, item_availability;
  // collection ref
  var colRef = collection(db, reference);
 
@@ -112,7 +113,14 @@ var year = nextDay.getFullYear();
     document.getElementById('show-date').innerHTML  = formattedDate;
 }
 
-function showMenuItems(item_name, item_price){
+function showMenuItems(item_name, show_item_price_in_menu){
+
+  if(item_price==0){
+    text_in_add_to_cart_button='Added to cart'
+  }
+  else{
+    text_in_add_to_cart_button='Add to cart'
+  }
 
   // Create a new element
 var newElement = document.createElement('div');
@@ -137,8 +145,9 @@ newElement.innerHTML = `
       <div class="col text-end">${show_item_price_in_menu} </div>
     </div>
   </h5>
-  <a href="#" class="btn btn-secondary w-100">Add to cart</a>
+  <a href="#" class="btn btn-secondary w-100" id="${item_name}">${text_in_add_to_cart_button}</a>
 </div>`;
+
 
 // Get the parent element by its ID name
 var parentElement = document.getElementById('menu-items-card-holder');
@@ -154,7 +163,7 @@ parentElement.appendChild(newElement);
 function menu(){
 
  colRef = collection(db, reference);
-var item_name, item_price, item_availability;
+
 // get collection data
 getDocs(colRef)
   .then(snapshot => {
@@ -205,18 +214,7 @@ function addItemsToMenuByAdmin(){
 function lunchButtonClicked(){
   document.getElementById('lunch-button').addEventListener("click", function() {
     document.getElementById('menu-items-card-holder').innerHTML='';
-    // document.getElementById('lunch-button').style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
-    // document.getElementById('dinner-button').style.backgroundColor = 'white';
-    // document.getElementById('dinner-button').style.color = 'black';
-    // var lunch_element = document.getElementById('dinner-button');
-    // lunch_element.addEventListener('mouseenter', function() {
-    //   lunch_element.style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
-    //   lunch_element.style.color = 'white';
-    // });
-    // lunch_element.addEventListener('mouseleave', function() {
-    //   lunch_element.style.backgroundColor = 'white';
-    //   lunch_element.style.color = 'black';
-    // });
+
     meal_name = 'Lunch';
     reference = hall_name+'/Menu/'+meal_name;
     menu();
@@ -228,18 +226,7 @@ function lunchButtonClicked(){
 function dinnerButtonClicked(){
   document.getElementById('dinner-button').addEventListener("click", function() {
     document.getElementById('menu-items-card-holder').innerHTML='';
-    // document.getElementById('dinner-button').style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
-    // document.getElementById('lunch-button').style.backgroundColor = 'white';
-    // document.getElementById('lunch-button').style.color = 'black';
-    // var dinner_element = document.getElementById('lunch-button');
-    // dinner_element.addEventListener('mouseenter', function() {
-    //   dinner_element.style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
-    //   dinner_element.style.color = 'white';
-    // });
-    // dinner_element.addEventListener('mouseleave', function() {
-    //   dinner_element.style.backgroundColor = 'white';
-    //   dinner_element.style.color = 'black';
-    // });
+
     meal_name = 'Dinner';
     reference = hall_name+'/Menu/'+meal_name;
     menu();
@@ -251,6 +238,8 @@ function dinnerButtonClicked(){
 
 function showSelectedHallName(){
   document.getElementById("myDropdownMenu").addEventListener("click", function(event) {
+    document.getElementById("lunch-button").focus();
+    meal_name='Lunch';
      hall_name = event.target.textContent;
     document.getElementById("showSelectedHallName").innerHTML = `<div class="row py-3 m-0 third-row">
     <div class="col">
@@ -278,7 +267,10 @@ function showSelectedHallName(){
 function addItemButtonClicked(){
   document.getElementById('add-element-container').addEventListener("click", function(event){
     document.getElementById('popup-container').style.display = "block";
+    document.getElementById('add-item-lunch-button').innerHTML = meal_name;
   });
+
+  
 }
 
 function closeAddItemPopupClicked(){
@@ -291,7 +283,7 @@ function closeAddItemPopupClicked(){
  function submitAddItemButtonClicked(){
 document.getElementById('submit-add-item-popup').addEventListener("click", function(event){
 var newItemName = document.getElementById("itemNameToBeAdded").value;
-var newItemValue = document.getElementById("itemPriceToBeAdded").value;
+var newItemValue = Number(document.getElementById("itemPriceToBeAdded").value);
 var newItem = {
   Available: true,
   Price: newItemValue,
