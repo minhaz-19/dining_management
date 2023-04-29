@@ -269,5 +269,11 @@
     border: 1px solid black;
 }
 
+#close-add-item-popup:hover{
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+}
+
 
 
