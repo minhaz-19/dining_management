@@ -113,6 +113,11 @@ var year = nextDay.getFullYear();
     document.getElementById('show-date').innerHTML  = formattedDate;
 }
 
+
+
+
+
+
 function showMenuItems(item_name, show_item_price_in_menu){
 
   if(item_price==0){
@@ -145,8 +150,15 @@ newElement.innerHTML = `
       <div class="col text-end">${show_item_price_in_menu} </div>
     </div>
   </h5>
-  <a href="#" class="btn btn-secondary w-100" id="${item_name}">${text_in_add_to_cart_button}</a>
+  <a class="btn btn-secondary w-100" id="${item_name}" onclick="addToCartClicked(event, '${meal_name}')">${text_in_add_to_cart_button}</a>
 </div>`;
+
+
+
+// document.getElementById('${item_name}').addEventListener('click', function() {
+//   // Add your logic here for what should happen when the button is clicked
+//   console.log(item_name+' is selected');
+// });
 
 
 // Get the parent element by its ID name
@@ -319,6 +331,7 @@ setDoc(doc(collectionRef, documentId), newItemData)
 
 
 function orderPage(){
+  
   showDate();
 
   menu();
