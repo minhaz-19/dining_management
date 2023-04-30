@@ -155,11 +155,6 @@ newElement.innerHTML = `
 
 
 
-// document.getElementById('${item_name}').addEventListener('click', function() {
-//   // Add your logic here for what should happen when the button is clicked
-//   console.log(item_name+' is selected');
-// });
-
 
 // Get the parent element by its ID name
 var parentElement = document.getElementById('menu-items-card-holder');
@@ -270,6 +265,8 @@ function showSelectedHallName(){
   </div>`;
   document.getElementById('menu-items-card-holder').innerHTML='';
   reference = hall_name+'/Menu/'+meal_name;
+  window.selectedItemForLunch.length= 0;
+  window.selectedItemForDinner.length= 0;
   menu();
   });
 }
@@ -359,6 +356,17 @@ submitAddItemButtonClicked();
 
 
 
+function cartPage(){
+
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -371,4 +379,7 @@ if(document.title == 'Log In'){
 }
 else if(document.title == 'Order Meal'){
   orderPage();
+}
+else if(document.title == 'Cart'){
+  cartPage();
 }

@@ -17,6 +17,10 @@
         
       };
     </script>
+    <script>
+      var selectedItemForLunch=[];
+      var selectedItemForDinner= [];
+    </script>
     <link rel="stylesheet" href="../css/order.css" />
     
   </head>
@@ -63,7 +67,7 @@
                       <a class="nav-link" href="#">Order History</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Cart</a>
+                      <a class="nav-link" href="./cart.html">Cart</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Log Out</a>
@@ -261,14 +265,11 @@
       <!-- --------------main ends here --------------- -->
     </div>
     <script> function addToCartClicked(item_name, meal_name){
-      // if(meal_name=='Lunch'){
-      //   selectedItemForLunch.push(item_name.target.id);
-      // }else{
-      //   selectedItemForDinner.push(item_name.target.id);
-      // }
-      console.log('done')
-      // console.log(selectedItemForLunch);
-      // console.log(selectedItemForDinner);
+      if(meal_name=='Lunch'){
+        selectedItemForLunch.push(item_name.target.id);
+      }else{
+        selectedItemForDinner.push(item_name.target.id);
+      }
     }</script>
     <script src="bundle.js"></script>
     <script type="module" src="../js/login.js"></script>
