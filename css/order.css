@@ -58,13 +58,13 @@
 
 
 #lunch-button {
-    background-color: white;
 
-    color: black;
+    background-color: rgba(63, 99, 183, 0.689);
+    color: white;
     border: none;
     font-weight: bolder;
     padding: 1rem 0;
-    /* font-size: xx-large; */
+ 
 }
 
 #lunch-button:hover {
@@ -73,7 +73,6 @@
     border: none;
     font-weight: bolder;
     padding: 1rem 0;
-    /* font-size: xx-large; */
 }
 
 #lunch-button:focus {
@@ -82,7 +81,6 @@
     border: none;
     font-weight: bolder;
     padding: 1rem 0;
-    /* font-size: xx-large; */
 }
 
 #dinner-button{

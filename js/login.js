@@ -220,6 +220,12 @@ function addItemsToMenuByAdmin(){
 
 function lunchButtonClicked(){
   document.getElementById('lunch-button').addEventListener("click", function() {
+    let lunch_button = document.getElementById('lunch-button');
+    lunch_button.style.color = 'white';
+    lunch_button.style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
+    let dinner_button = document.getElementById('dinner-button');
+    dinner_button.style.color = 'black';
+    dinner_button.style.backgroundColor = 'white';
     document.getElementById('menu-items-card-holder').innerHTML='';
 
     meal_name = 'Lunch';
@@ -232,6 +238,12 @@ function lunchButtonClicked(){
 
 function dinnerButtonClicked(){
   document.getElementById('dinner-button').addEventListener("click", function() {
+    let dinner_button = document.getElementById('dinner-button');
+    dinner_button.style.color = 'white';
+    dinner_button.style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
+    let lunch_button = document.getElementById('lunch-button');
+    lunch_button.style.color = 'black';
+    lunch_button.style.backgroundColor = 'white';
     document.getElementById('menu-items-card-holder').innerHTML='';
 
     meal_name = 'Dinner';
@@ -245,7 +257,6 @@ function dinnerButtonClicked(){
 
 function showSelectedHallName(){
   document.getElementById("myDropdownMenu").addEventListener("click", function(event) {
-    document.getElementById("lunch-button").focus();
     meal_name='Lunch';
      hall_name = event.target.textContent;
     document.getElementById("showSelectedHallName").innerHTML = `<div class="row py-3 m-0 third-row">
@@ -264,6 +275,12 @@ function showSelectedHallName(){
     </div>
   </div>`;
   document.getElementById('menu-items-card-holder').innerHTML='';
+  let lunch_button = document.getElementById('lunch-button');
+    lunch_button.style.color = 'white';
+    lunch_button.style.backgroundColor = 'rgba(63, 99, 183, 0.689)';
+    let dinner_button = document.getElementById('dinner-button');
+    dinner_button.style.color = 'black';
+    dinner_button.style.backgroundColor = 'white';
   reference = hall_name+'/Menu/'+meal_name;
   window.selectedItemForLunch.length= 0;
   window.selectedItemForDinner.length= 0;
