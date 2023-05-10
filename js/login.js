@@ -5,7 +5,7 @@ import {
 import {
    getStorage, ref, uploadBytes, getDownloadURL
 } from "firebase/storage";
-import { getAuth, createUserWithEmailAndPassword 
+import { getAuth, createUserWithEmailAndPassword , signInWithEmailAndPassword
 } from 'firebase/auth';
 
 
@@ -48,18 +48,10 @@ var userEmail;
 
   async function signup(email, password) {
     try {
-      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      
-      // Access the newly created user object
       const user = userCredential.user;
-      
-      // You can perform additional actions with the user, such as updating their profile or sending a verification email
-      
-      // Return the user object or any other relevant data
       return user;
     } catch (error) {
-      // Handle any errors that occur during signup
       console.error('Error signing up:', error.message);
       throw error;
     }
@@ -68,37 +60,68 @@ var userEmail;
 
 
 
+  async function signIn(email, password) {
+    try {
+      // Sign in with email and password
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  
+      // Access the signed-in user object
+      const user = userCredential.user;
+  
+      // Return the user object or any other relevant data
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+
+
+
 function loginPage(){
   const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
+var signUpSubmitButton = document.getElementById('signUpSubmitButton');
+var loginButton = document.getElementById('loginButton');
 
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");
 });
 
-sign_in_btn.addEventListener("click", () => {
- // container.classList.remove("sign-up-mode");
+sign_in_btn.addEventListener('click', ()=>{
+  container.classList.remove("sign-up-mode");
+});
+
+signUpSubmitButton.addEventListener("click", () => {
  let signUpUserName = document.getElementById('signUpUserName').value;
  let signUpEmail = document.getElementById('signUpEmail').value;
  let signUpPassword = document.getElementById('signUpPassword').value;
 
  signup(signUpEmail, signUpPassword)
   .then(user => {
-    console.log('Signup successful!', user);
-
     userEmail= signUpEmail;
-    window.location.href = 'order.html';
+    window.location.href = './order.html';
   })
   .catch(error => {
-    console.error('Signup failed:', error);
-    // Handle the error
+    alert(error.message);
   });
-  // // Navigate to new HTML page
-  // window.location.href = 'order.html';
 });
 
-
+loginButton.addEventListener("click", () => {
+  let loginEmail = document.getElementById('loginEmail').value;
+  let loginPassword = document.getElementById('loginPassword').value;
+ 
+  signIn(loginEmail, loginPassword)
+  .then(user => {
+    userEmail= loginEmail
+    window.location.href = './order.html';
+  })
+  .catch(error => {
+    alert(error.message);
+  });
+ });
 
 }
 
