@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/css/bootstrap.min.css">
+  <title>Cart</title>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Shopping Cart</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems">
+        <!-- Cart items will be dynamically populated here -->
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <script>
+
+
+    // Reference to the cart items in Firebase
+    var cartRef = database.ref('cartItems');
+
+    // Listen for changes in the cart items
+    cartRef.on('value', function(snapshot) {
+      var cartItems = snapshot.val();
+      var cartItemsHTML = '';
+
+      // Iterate over the cart items and create HTML rows
+      for (var key in cartItems) {
+        if (cartItems.hasOwnProperty(key)) {
+          var item = cartItems[key];
+          cartItemsHTML += '<tr>';
+          cartItemsHTML += '<td>' + item.product + '</td>';
+          cartItemsHTML += '<td>' + item.price + '</td>';
+          cartItemsHTML += '</tr>';
+        }
+      }
+
+      // Update the table body with the generated HTML
+      document.getElementById('cartItems').innerHTML = cartItemsHTML;
+    });
+  </script>
+</body>
+</html>

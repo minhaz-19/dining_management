@@ -102,6 +102,7 @@ signUpSubmitButton.addEventListener("click", () => {
  signup(signUpEmail, signUpPassword)
   .then(user => {
     userEmail= signUpEmail;
+    localStorage.setItem("userEmail", userEmail);
     window.location.href = './order.html';
   })
   .catch(error => {
@@ -116,7 +117,10 @@ loginButton.addEventListener("click", () => {
   signIn(loginEmail, loginPassword)
   .then(user => {
     userEmail= loginEmail
+    localStorage.setItem("userEmail", userEmail);
+    
     window.location.href = './order.html';
+    
   })
   .catch(error => {
     alert(error.message);
@@ -146,7 +150,9 @@ var item_name, item_price, item_availability;
 
 
 function showDate(){
-
+   userEmail = localStorage.getItem("userEmail");
+  document.getElementById('hello').innerHTML = userEmail
+  console.log("user email is: " + userEmail )
   var nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1); // Add 1 day to the current date
     // Define an array of month names
